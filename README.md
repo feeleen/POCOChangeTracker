@@ -38,7 +38,7 @@ using (var db = new DbContext())
   var customer = db.Customers.Take(1).First();
   
   // here we start change tracking of the object
-  customer.StartChangeTracking();
+  customer.AcceptChanges();
   
   customer.CompanyName = DateTime.Now.Ticks.ToString();
 
