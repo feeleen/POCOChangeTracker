@@ -10,12 +10,12 @@ namespace POCOChangeTracker
 {
 	public class ChangeTrackedPOCO<TEntity>
 	{
+		private int GenerationsCounter { get; set; } = 0;
 		private ChangeTrackedPOCO<TEntity> oldValue { get; set; }
 
-		public void StartChangeTracking()
+		public int GetGenerationsCount()
 		{
-			oldValue = (ChangeTrackedPOCO<TEntity>)Activator.CreateInstance(GetType());
-			CopyProperties(this, oldValue);
+			return GenerationsCounter;
 		}
 
 		public void RejectChanges()
@@ -25,7 +25,13 @@ namespace POCOChangeTracker
 
 		public void AcceptChanges()
 		{
-			StartChangeTracking();
+			if (oldValue == null)
+			{
+				oldValue = (ChangeTrackedPOCO<TEntity>)Activator.CreateInstance(GetType());
+			}
+
+			CopyProperties(this, oldValue);
+			GenerationsCounter++;
 		}
 
 		public object GetOldValue<TProperty>(Expression<Func<TEntity, TProperty>> propertyLambda)
@@ -54,6 +60,9 @@ namespace POCOChangeTracker
 			var allProps = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly)
 				.Where(pi => pi.PropertyType.IsSimpleType());
 
+			if (oldValue == null)
+				return allProps.Select(x => x.Name).ToList();
+
 			var diffProperties =
 				from pi in allProps
 				let thisPropValue = type.GetProperty(pi.Name).GetValue(this, null)
@@ -61,11 +70,16 @@ namespace POCOChangeTracker
 				where thisPropValue != oldOPropValue && !Equals(thisPropValue, oldOPropValue)
 				select pi.Name;
 
-			return diffProperties.ToList();
+			return diffProperties == null? allProps.Select(x => x.Name).ToList() : diffProperties.ToList();
 		}
 
 		private static ChangeTrackedPOCO<TEntity> CopyProperties(ChangeTrackedPOCO<TEntity> source, ChangeTrackedPOCO<TEntity> target)
 		{
+			if (source == null)
+				throw new ArgumentNullException(nameof(source));
+			if (target == null)
+				throw new ArgumentNullException(nameof(target));
+
 			foreach (var sProp in source.GetType().GetProperties())
 			{
 				bool isMatched = target.GetType().GetProperties().Any(tProp => tProp.Name == sProp.Name && tProp.GetType() == sProp.GetType() && tProp.CanWrite);
@@ -88,6 +102,7 @@ namespace POCOChangeTracker
 			{
 				return type.GetGenericArguments()[0].IsSimpleType();
 			}
+
 			return type.IsPrimitive
 			  || type.IsEnum
 			  || type.Equals(typeof(string))

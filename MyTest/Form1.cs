@@ -24,7 +24,7 @@ namespace MyTest
 
 				var customer = list[0];
 
-				customer.StartChangeTracking();
+				customer.AcceptChanges();
 				customer.CompanyName = DateTime.Now.Ticks.ToString();
 
 				var changes = customer.GetChangedProperties();
