@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace POCOChangeTracker
 {
-	public class ChangeTrackedPOCO<TEntity> : IChangeTracking
+	public class ChangeTrackedPOCO<TEntity> : IChangeTracking, IRevertibleChangeTracking
 	{
 		private int GenerationsCounter { get; set; } = 0;
 		private ChangeTrackedPOCO<TEntity> oldValue { get; set; }
