@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTest", "MyTest\MyTest.csproj", "{A9750FCD-59E1-454F-8942-17537632D65F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POCOChangeTracker", "POCOChangeTracker\POCOChangeTracker.csproj", "{4A6916A1-DF59-40D1-8FA5-A93F21A06551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E99F89CE-B45F-4899-B8E9-AD2F14E458D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9750FCD-59E1-454F-8942-17537632D65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9750FCD-59E1-454F-8942-17537632D65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9750FCD-59E1-454F-8942-17537632D65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9750FCD-59E1-454F-8942-17537632D65F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A6916A1-DF59-40D1-8FA5-A93F21A06551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A6916A1-DF59-40D1-8FA5-A93F21A06551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A6916A1-DF59-40D1-8FA5-A93F21A06551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A6916A1-DF59-40D1-8FA5-A93F21A06551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99F89CE-B45F-4899-B8E9-AD2F14E458D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99F89CE-B45F-4899-B8E9-AD2F14E458D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99F89CE-B45F-4899-B8E9-AD2F14E458D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99F89CE-B45F-4899-B8E9-AD2F14E458D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
