@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/xebok5a2fernc7ly?svg=true)](https://ci.appveyor.com/project/feeleen/pocochangetracker)
+
 # POCOChangeTracker
 Simple Change Tracker for POCO objects
 
